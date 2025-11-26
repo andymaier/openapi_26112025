@@ -67,12 +67,12 @@ components:
           format: uuid
         name:
           type: string
-          maxLength: 45
-          format: double
+          maxLength: 45          
           description: This is the name of the article
           example: Cherry
         price:
           type: number
+          format: double         
           minimum: 0
           description: This is the price to sell
           example: 0.99
