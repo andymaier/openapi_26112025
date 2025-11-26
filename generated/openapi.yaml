@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Katalog API
+  version: "1.0"
+servers:
+- url: http://localhost:50001
+- url: http://ocp4.de:50001
+paths:
+  /articles:
+    get:
+      description: Articles will be provided
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Article"
+                type: array
+          description: OK
+      summary: Get all Artikels
+      tags:
+      - Shop
+    post:
+      description: "This is an **article**\n\nIt consist of:\n  - name\n  - price\n\
+        \  - id\n\nInline-style: \n![alt text](https://www.workingsoftware.dev/content/images/2022/12/image-75.png\
+        \ \"Logo Title Text 1\")\n\n| Tables        | Are           | Cool  |\n| -------------\
+        \ |:-------------:| -----:|\n| col 3 is      | right-aligned | $1600 |\n|\
+        \ col 2 is      | centered      |   $12 |\n| zebra stripes | are neat    \
+        \  |    $1 |\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Article"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Article"
+          description: Created
+      summary: create an article
+      tags:
+      - Shop
+components:
+  schemas:
+    Article:
+      example:
+        price: 0.99
+        name: Cherry
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          maxLength: 60
+          title: id
+          type: string
+        name:
+          description: This is the name of the article
+          example: Cherry
+          maxLength: 45
+          title: name
+          type: string
+        price:
+          description: This is the price to sell
+          example: 0.99
+          format: double
+          minimum: 0
+          title: price
+          type: number
+      required:
+      - name
+      - price
+      title: Article
+      type: object
