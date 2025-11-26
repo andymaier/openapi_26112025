@@ -20,16 +20,55 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Article'
+                  $ref: '#/components/schemas/Article'  
+    post:
+      tags:
+        - Shop
+      summary: create an article
+      description: |
+        This is an **article**
+
+        It consist of:
+          - name
+          - price
+          - id
+
+        Inline-style: 
+        ![alt text](https://www.workingsoftware.dev/content/images/2022/12/image-75.png "Logo Title Text 1")
+
+        | Tables        | Are           | Cool  |
+        | ------------- |:-------------:| -----:|
+        | col 3 is      | right-aligned | $1600 |
+        | col 2 is      | centered      |   $12 |
+        | zebra stripes | are neat      |    $1 |
+
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:                                
+                $ref: '#/components/schemas/Article'  
 
 components:
   schemas:
     Article:
       type: object
       properties:
+        id:
+          type: string
+          maxLength: 60
+          format: uuid
         name:
           type: string
           maxLength: 45
+          format: double
           description: This is the name of the article
           example: Cherry
         price:
